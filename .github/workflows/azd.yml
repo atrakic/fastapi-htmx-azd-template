@@ -1,3 +1,5 @@
+name: azd
+
 on:
   workflow_dispatch:
   push:

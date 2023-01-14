@@ -1,5 +1,7 @@
 # ToDo Application with a FastAPI with sqlite3 and HTMX on Azure App Service (Terraform)
 
+[![Pylint](https://github.com/atrakic/fastapi-htmx-azd-template/actions/workflows/pylint.yml/badge.svg)](https://github.com/atrakic/fastapi-htmx-azd-template/actions/workflows/pylint.yml)
+
 A ToDo application that includes everything you need to build, deploy, and monitor an Azure solution. This application uses the Azure Developer CLI (azd) to get you up and running on Azure quickly using Terraform as the IaC provider, React.js for the Web application, Python (FastAPI) for the API, Azure Cosmos DB API for MongoDB for storage, and Azure Monitor for monitoring and logging. It includes application code, tools, and pipelines that serve as a foundation from which you can build upon and customize when creating your own solutions.
 
 ### Prerequisites

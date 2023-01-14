@@ -23,6 +23,7 @@ app = FastAPI(
 
 templates = Jinja2Templates(directory="templates")
 
+
 def get_db():
     db_name = SessionLocal()
     try:
@@ -42,7 +43,9 @@ def home(request: Request, db_name: Session = Depends(get_db)):
 
 
 @app.post("/add", response_class=HTMLResponse)
-def post_add(request: Request, content: str = Form(...), db_name: Session = Depends(get_db)):
+def post_add(
+    request: Request, content: str = Form(...), db_name: Session = Depends(get_db)
+):
     session_key = request.cookies.get("session_key")
     todo = create_todo(db_name, content=content, session_key=session_key)
     context = {"request": request, "todo": todo}
