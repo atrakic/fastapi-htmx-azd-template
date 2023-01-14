@@ -2,7 +2,9 @@
 
 [![Pylint](https://github.com/atrakic/fastapi-htmx-azd-template/actions/workflows/pylint.yml/badge.svg)](https://github.com/atrakic/fastapi-htmx-azd-template/actions/workflows/pylint.yml)
 
-A ToDo application that includes everything you need to build, deploy, and monitor an Azure solution. This application uses the Azure Developer CLI (azd) to get you up and running on Azure quickly using Terraform as the IaC provider, React.js for the Web application, Python (FastAPI) for the API, Azure Cosmos DB API for MongoDB for storage, and Azure Monitor for monitoring and logging. It includes application code, tools, and pipelines that serve as a foundation from which you can build upon and customize when creating your own solutions.
+A ToDo template that includes everything you need to build, deploy, and monitor an Azure solution.
+Uses the Azure Developer CLI (azd) to get you up and running on Azure quickly using Terraform as the IaC provider, Htmx for the Web application, Python (FastAPI) for the API, and Azure Monitor for monitoring and logging.
+It includes application code, tools, and pipelines that serve as a foundation from which you can build upon and customize when creating your own solutions.
 
 ### Prerequisites
 
@@ -22,12 +24,13 @@ The fastest way for you to get this application up and running on Azure is to us
 1. Run the following command to initialize the project, provision Azure resources, and deploy the application code.
 
 ```bash
-azd up --template fastapi-htmx-azd-template
+azd up --template atrakic/fastapi-htmx-azd-template
 ```
 
 You will be prompted for the following information:
 
-- `Environment Name`: This will be used as a prefix for the resource group that will be created to hold all Azure resources. This name should be unique within your Azure subscription.
+- `Environment Name`: This will be used as a prefix for the resource group that will be created to hold all Azure resources.
+This name should be unique within your Azure subscription.
 - `Azure Location`: The Azure location where your resources will be deployed.
 - `Azure Subscription`: The Azure Subscription where your resources will be deployed.
 
@@ -104,8 +107,6 @@ Run the following command to set up a GitHub Action:
 azd pipeline config
 ```
 
-> Support for Azure DevOps Pipelines is coming soon to `azd pipeline config`. In the meantime, you can follow the instructions found here: [.azdo/pipelines/README.md](./.azdo/pipelines/README.md) to set it up manually.
-
 #### Monitor the application using `azd monitor`
 
 To help with monitoring applications, the Azure Dev CLI provides a `monitor` command to help you get to the various Application Insights dashboards.
@@ -131,10 +132,6 @@ To help with monitoring applications, the Azure Dev CLI provides a `monitor` com
   ```bash
   azd monitor --logs
   ```
-
-#### Run and Debug Locally
-
-The easiest way to run and debug is to leverage the Azure Developer CLI Visual Studio Code Extension. Refer to this [walk-through](https://aka.ms/azure-dev/vscode) for more details.
 
 #### Clean up resources
 

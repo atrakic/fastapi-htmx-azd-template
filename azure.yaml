@@ -6,9 +6,8 @@ services:
     project: ./src
     language: py
     host: appservice
-
 infra:
   provider: terraform
-
+# azd pipeline config
 #pipeline:
-#    provider: ""
+#  provider: ""
