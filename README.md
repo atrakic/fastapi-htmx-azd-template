@@ -9,6 +9,7 @@ The following prerequisites are required to use this application. Please ensure 
 - [Azure Developer CLI](https://aka.ms/azd-install)
 - [Python (3.8+)](https://www.python.org/downloads/) - for the API backend
 - [Terraform CLI](https://aka.ms/azure-dev/terraform-install)
+- [Azure secrets](https://aka.ms/create-secrets-for-GitHub-workflows)
 
 ### Quickstart
 
