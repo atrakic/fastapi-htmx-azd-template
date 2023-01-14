@@ -1,6 +1,6 @@
-# ToDo Application with a FastAPI and HTMX on Azure App Service (Terraform)
+# ToDo Application with a FastAPI with sqlite3 and HTMX on Azure App Service (Terraform)
 
-A complete ToDo application that includes everything you need to build, deploy, and monitor an Azure solution. This application uses the Azure Developer CLI (azd) to get you up and running on Azure quickly using Terraform as the IaC provider, React.js for the Web application, Python (FastAPI) for the API, Azure Cosmos DB API for MongoDB for storage, and Azure Monitor for monitoring and logging. It includes application code, tools, and pipelines that serve as a foundation from which you can build upon and customize when creating your own solutions.
+A ToDo application that includes everything you need to build, deploy, and monitor an Azure solution. This application uses the Azure Developer CLI (azd) to get you up and running on Azure quickly using Terraform as the IaC provider, React.js for the Web application, Python (FastAPI) for the API, Azure Cosmos DB API for MongoDB for storage, and Azure Monitor for monitoring and logging. It includes application code, tools, and pipelines that serve as a foundation from which you can build upon and customize when creating your own solutions.
 
 ### Prerequisites
 
@@ -33,7 +33,7 @@ You will be prompted for the following information:
 When `azd up` is complete it will output the following URLs:
 
 - Azure Portal link to view resources
-- ToDo API application + frontend
+- ToDo API application
 
 Click the web application URL to launch the ToDo app. Create a new collection and add some items. This will create monitoring activity in the application that you will be able to see later when you run `azd monitor`.
 
@@ -47,13 +47,7 @@ Click the web application URL to launch the ToDo app. Create a new collection an
 
 This application utilizes the following Azure resources:
 
-- [**Azure App Services**](https://docs.microsoft.com/azure/app-service/) to host the Web frontend and API backend
-
-Here's a high level architecture diagram that illustrates these components. Notice that these are all contained within a single [resource group](https://docs.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal), that will be created for you when you create the resources.
-
-<img src="assets/resources.png" width="60%" alt="Application architecture diagram"/>
-
-> This template provisions resources to an Azure subscription that you will select upon provisioning them. Please refer to the [Pricing calculator for Microsoft Azure](https://azure.microsoft.com/pricing/calculator/) and, if needed, update the included Azure resource definitions found in `infra/main.bicep` to suit your needs.
+- [**Azure App Services**](https://docs.microsoft.com/azure/app-service/) to host the Web app
 
 ### Application Code
 
@@ -63,7 +57,6 @@ The repo is structured to follow the [Azure Developer CLI](https://aka.ms/azure-
 - **Infrastructure as Code**: All application "infrastructure as code" files are located in the `infra` folder.
 - **Azure Developer Configuration**: An `azure.yaml` file located in the root that ties the application source code to the Azure services defined in your "infrastructure as code" files.
 - **GitHub Actions**: A sample GitHub action file is located in the `.github/workflows` folder.
-- **VS Code Configuration**: All VS Code configuration to run and debug the application is located in the `.vscode` folder.
 
 ### Azure Subscription
 
@@ -147,7 +140,3 @@ When you are done, you can delete all the Azure resources created with this temp
 ```bash
 azd down
 ```
-
-### Additional azd commands
-
-The Azure Developer CLI includes many other commands to help with your Azure development experience. You can view these commands at the terminal by running `azd help`. You can also view the full list of commands on our [Azure Developer CLI command](https://aka.ms/azure-dev/ref) page.
