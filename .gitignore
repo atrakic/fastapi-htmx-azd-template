@@ -13,3 +13,5 @@
 **/src/*.sqlite
 .direnv/*
 .azure
+.venv
+db.sqlite

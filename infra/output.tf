@@ -10,9 +10,3 @@ output "APPLICATIONINSIGHTS_CONNECTION_STRING" {
   value     = module.applicationinsights.APPLICATIONINSIGHTS_CONNECTION_STRING
   sensitive = true
 }
-
-output "REACT_APP_APPLICATIONINSIGHTS_CONNECTION_STRING" {
-  value     = module.applicationinsights.APPLICATIONINSIGHTS_CONNECTION_STRING
-  sensitive = true
-}
-
