@@ -15,7 +15,7 @@ from database import engine
 
 from models import create_todo, delete_todo, get_todo, get_todos, update_todo
 
-Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(bind=engine, checkfirst=True)
 
 app = FastAPI(
     description="Todo API",
