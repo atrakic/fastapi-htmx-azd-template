@@ -1,4 +1,4 @@
-# ToDo Application with a FastAPI with sqlite3 and HTMX on Azure App Service (Terraform)
+# ToDo Application with a FastAPI and HTMX on Azure App Service (Terraform)
 
 [![Pylint](https://github.com/atrakic/fastapi-htmx-azd-template/actions/workflows/pylint.yml/badge.svg)](https://github.com/atrakic/fastapi-htmx-azd-template/actions/workflows/pylint.yml)
 
@@ -11,7 +11,7 @@ It includes application code, tools, and pipelines that serve as a foundation fr
 The following prerequisites are required to use this application. Please ensure that you have them all installed locally.
 
 - [Azure Developer CLI](https://aka.ms/azd-install)
-- [Python (3.8+)](https://www.python.org/downloads/) - for the API backend
+- [Python (3.9+)](https://www.python.org/downloads/) - for the API backend
 - [Terraform CLI](https://aka.ms/azure-dev/terraform-install)
 - [Azure secrets](https://aka.ms/create-secrets-for-GitHub-workflows)
 

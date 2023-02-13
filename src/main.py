@@ -1,5 +1,6 @@
 """main"""
 
+import os
 import uuid
 from fastapi import Depends
 from fastapi import FastAPI, Form
@@ -18,7 +19,9 @@ from models import create_todo, delete_todo, get_todo, get_todos, update_todo
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
-    description="Todo API",
+    title="Todo API",
+    description="List of tasks that needs to be done",
+    version="0.0.1",
 )
 
 templates = Jinja2Templates(directory="templates")
@@ -74,3 +77,8 @@ def put_edit(
 @app.delete("/delete/{item_id}", response_class=Response)
 def delete(item_id: int, db_name: Session = Depends(get_db)):
     delete_todo(db_name, item_id)
+
+
+@app.get("/ping")
+def ping():
+    return {"status": "success", "message": "pong!", "container_id": os.uname()}

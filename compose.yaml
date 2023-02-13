@@ -1,0 +1,41 @@
+services:
+  app:
+    build:
+      context: ./src
+    ports:
+      - 3000:3000
+    container_name: fastapi-htmx-todo
+    environment:
+      - SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres:mysecretpassword@db/postgres
+    networks:
+      - client-side
+      - server-side
+    healthcheck:
+      test: /healthchecks/curl.sh
+      interval: "30s"
+    volumes:
+      - ./healthchecks:/healthchecks
+    depends_on:
+      - db
+  db:
+    image: postgres:12-alpine
+    restart: always
+    container_name: db
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+    networks:
+      - server-side
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: /healthchecks/postgres.sh
+      interval: "30s"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./healthchecks:/healthchecks
+networks:
+  client-side: {}
+  server-side: {}
+
+volumes:
+  db-data: {}

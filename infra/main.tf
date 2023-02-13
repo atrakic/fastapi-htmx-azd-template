@@ -43,6 +43,14 @@ module "appserviceplan" {
   resource_token = local.resource_token
 }
 
+module "postgresql" {
+  source   = "./modules/postgresql"
+  location = var.location
+  rg_name  = azurerm_resource_group.rg.name
+  tags     = azurerm_resource_group.rg.tags
+  #resource_token = local.resource_token
+}
+
 module "web" {
   source             = "./modules/appservicenode"
   location           = var.location
@@ -52,6 +60,7 @@ module "web" {
   service_name       = "web"
   appservice_plan_id = module.appserviceplan.APPSERVICE_PLAN_ID
   app_settings = {
+    "SQLALCHEMY_DATABASE_URI"               = module.postgresql.SQLALCHEMY_DATABASE_URI
     "SCM_DO_BUILD_DURING_DEPLOYMENT"        = "false"
     "APPLICATIONINSIGHTS_CONNECTION_STRING" = module.applicationinsights.APPLICATIONINSIGHTS_CONNECTION_STRING
   }
