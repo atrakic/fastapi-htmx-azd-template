@@ -11,9 +11,17 @@
 # at .git/hooks/pre-commit
 
 repos:
-- repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.3.0
-  hooks:
-  - id: end-of-file-fixer
-  - id: trailing-whitespace
-  - id: check-merge-conflict
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+    - id: end-of-file-fixer
+    - id: trailing-whitespace
+    - id: check-merge-conflict
+
+  # pre-commit install --hook-type commit-msg
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v2.1.1
+    hooks:
+      - id: conventional-pre-commit
+        stages: [commit-msg]
+        args: [] # optional: list of Conventional Commits types to allow e.g. [feat, fix, ci, chore, test]
