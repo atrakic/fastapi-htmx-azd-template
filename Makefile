@@ -14,7 +14,14 @@ release: ## Release (eg. V=0.0.1)
 		 && git tag v$(V) -m "chore: v$(V)" \
 		 && git push origin v$(V) -f \
 		 && git fetch --tags --force --all -p \
-		 && git describe --tags $(shell git rev-list --tags --max-count=1)
+		 && if [ ! -z "$(GITHUB_TOKEN)" ] ; then \
+			curl \
+			  -H "Authorization: token $(GITHUB_TOKEN)" \
+				-X POST	\
+				-H "Accept: application/vnd.github.v3+json"	\
+				https://api.github.com/repos/atrakic/$(shell basename $$PWD)/releases \
+				-d "{\"tag_name\":\"$(V)\",\"generate_release_notes\":true}"; \
+			fi;
 
 help:
 	awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_0-9-]+:.*?##/ { printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
