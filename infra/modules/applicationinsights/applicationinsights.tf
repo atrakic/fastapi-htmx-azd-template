@@ -1,18 +1,17 @@
 terraform {
+  required_version = ">= 0.13.1"
   required_providers {
     azurerm = {
-      version = "~>3.18.0"
+      version = ">= 3.18.0"
       source  = "hashicorp/azurerm"
     }
     azurecaf = {
       source  = "aztfmod/azurecaf"
-      version = "~>1.2.15"
+      version = ">= 1.2.15"
     }
   }
 }
-# ------------------------------------------------------------------------------------------------------
-# DEPLOY APPLICATION INSIGHTS
-# ------------------------------------------------------------------------------------------------------
+
 resource "azurecaf_name" "applicationinsights_name" {
   name          = var.resource_token
   resource_type = "azurerm_application_insights"
