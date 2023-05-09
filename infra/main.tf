@@ -50,7 +50,7 @@ module "web" {
   location           = var.location
   rg_name            = azurerm_resource_group.rg.name
   resource_token     = local.resource_token
-  tags               = merge(local.tags, { azd-service-name : "web" })
+  tags               = azurerm_resource_group.rg.tags
   service_name       = "web"
   appservice_plan_id = module.appserviceplan.APPSERVICE_PLAN_ID
   app_settings = {
