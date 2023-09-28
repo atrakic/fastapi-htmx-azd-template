@@ -1,4 +1,6 @@
-FROM python:3.8-slim-buster
+FROM python:3.11.1-slim
+LABEL maintainer="Admir Trakic <atrakic@users.noreply.github.com>"
+WORKDIR /app
 
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -9,10 +11,10 @@ ENV PYTHONUNBUFFERED=1
 RUN addgroup --system fastapi \
     && adduser --system --ingroup fastapi fastapi
 
-WORKDIR /app
 COPY --chown=fastapi:fastapi . ./
 RUN pip install --no-cache-dir -r requirements.txt
 RUN chmod +x start.sh
 
+USER fastapi
 EXPOSE 3000
 CMD ["/app/start.sh"]
