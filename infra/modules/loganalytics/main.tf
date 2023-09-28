@@ -12,6 +12,13 @@ terraform {
   }
 }
 
+locals {
+  module_tag = {
+    "module" = basename(abspath(path.module))
+  }
+  tags = merge(var.tags, local.module_tag)
+}
+
 resource "azurecaf_name" "workspace_name" {
   name          = var.resource_token
   resource_type = "azurerm_log_analytics_workspace"
@@ -25,5 +32,6 @@ resource "azurerm_log_analytics_workspace" "workspace" {
   resource_group_name = var.rg_name
   sku                 = "PerGB2018"
   retention_in_days   = 30
-  tags                = var.tags
+  tags                = local.tags
+
 }

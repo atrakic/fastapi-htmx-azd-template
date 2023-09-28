@@ -12,6 +12,13 @@ terraform {
   }
 }
 
+locals {
+  module_tag = {
+    "module" = basename(abspath(path.module))
+  }
+  tags = merge(var.tags, local.module_tag)
+}
+
 resource "azurecaf_name" "plan_name" {
   name          = var.resource_token
   resource_type = "azurerm_app_service_plan"
@@ -25,6 +32,5 @@ resource "azurerm_service_plan" "plan" {
   resource_group_name = var.rg_name
   os_type             = var.os_type
   sku_name            = var.sku_name
-
-  tags = var.tags
+  tags                = local.tags
 }

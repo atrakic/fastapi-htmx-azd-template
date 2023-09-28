@@ -5,6 +5,8 @@
 
 # .tfstate files
 **/infra/*.tfstate
+**/infra/*.terraform.lock.hcl
+
 **/*.tfstate.*
 
 # Crash log files

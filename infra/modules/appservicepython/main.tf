@@ -12,6 +12,13 @@ terraform {
   }
 }
 
+locals {
+  module_tag = {
+    "module" = basename(abspath(path.module))
+  }
+  tags = merge(var.tags, local.module_tag)
+}
+
 resource "azurecaf_name" "web_name" {
   name          = "${var.service_name}-${var.resource_token}"
   resource_type = "azurerm_app_service"
@@ -25,7 +32,7 @@ resource "azurerm_linux_web_app" "web" {
   resource_group_name = var.rg_name
   service_plan_id     = var.appservice_plan_id
   https_only          = true
-  tags                = var.tags
+  tags                = local.tags
 
   site_config {
     always_on        = true

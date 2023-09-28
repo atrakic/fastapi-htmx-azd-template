@@ -37,6 +37,7 @@ variable "app_command_line" {
 variable "tags" {
   description = "A list of tags used for deployed services."
   type        = map(string)
+  default     = {}
 }
 
 variable "resource_token" {
@@ -47,5 +48,5 @@ variable "resource_token" {
 variable "python_version" {
   description = "the application stack python version to set for the app service."
   type        = string
-  default     = "3.8"
+  default     = "3.11"
 }

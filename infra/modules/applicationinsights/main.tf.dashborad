@@ -12,6 +12,13 @@ terraform {
   }
 }
 
+locals {
+  module_tag = {
+    "module" = basename(abspath(path.module))
+  }
+  tags = merge(var.tags, local.module_tag)
+}
+
 resource "azurecaf_name" "applicationinsights_name" {
   name          = var.resource_token
   resource_type = "azurerm_application_insights"
@@ -25,7 +32,7 @@ resource "azurerm_application_insights" "applicationinsights" {
   resource_group_name = var.rg_name
   application_type    = "web"
   workspace_id        = var.workspace_id
-  tags                = var.tags
+  tags                = local.tags
 }
 
 data "azurerm_subscription" "current" {}
@@ -34,7 +41,7 @@ resource "azurerm_portal_dashboard" "board" {
   name                 = "dash-${var.resource_token}"
   resource_group_name  = var.rg_name
   location             = var.location
-  tags                 = var.tags
+  tags                 = local.tags
   dashboard_properties = <<DASH
 {
     "lenses": {
