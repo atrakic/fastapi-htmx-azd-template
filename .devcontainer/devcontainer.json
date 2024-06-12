@@ -33,7 +33,7 @@
 				"ms-python.python",
 				"ms-azuretools.vscode-azurefunctions"
 			]
-			
+
 		}
 	},
     "forwardPorts": [
