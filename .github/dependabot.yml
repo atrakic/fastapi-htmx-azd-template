@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      # Prefix all commit messages with "[docker] " (no colon, but a trailing whitespace)
+      prefix: "[docker] "
+
+  - package-ecosystem: "pip"
+      directory: "/"
+      schedule:
+        interval: "weekly"
+      prefix: "[pip] "
