@@ -1,8 +1,13 @@
 MAKEFLAGS += --silent
 .DEFAULT_GOAL := help
 
-compose: ## Run with docker compose
+APP ?= app
+
+up: ## Run with docker compose
 	COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose up --build --remove-orphans --force-recreate -d
+
+healthcheck:
+	docker inspect $(APP) --format "{{ (index (.State.Health.Log) 0).Output }}"
 
 pylint: ## Run pylint
 	pylint $(shell git ls-files '*.py')
@@ -29,6 +34,6 @@ help:
 clean: ## Clean up
 	docker-compose rm -s -a -v -f || true
 
-.PHONY: compose pylint clean help release
+.PHONY: up pylint clean help release
 
 -include include.mk

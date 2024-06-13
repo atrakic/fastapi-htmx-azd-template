@@ -12,6 +12,7 @@ from sqlalchemy.orm import Session
 from database import Base
 from database import SessionLocal
 from database import engine
+from database import get_db
 
 from models import create_todo, delete_todo, get_todo, get_todos, update_todo
 
@@ -24,12 +25,9 @@ app = FastAPI(
 templates = Jinja2Templates(directory="templates")
 
 
-def get_db():
-    db_name = SessionLocal()
-    try:
-        yield db_name
-    finally:
-        db_name.close()
+@app.get("/healthcheck")
+def root():
+    return {"message": "Healthy"}
 
 
 @app.get("/", response_class=HTMLResponse)
