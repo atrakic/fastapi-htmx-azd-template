@@ -6,7 +6,7 @@ services:
     healthcheck:
       test:
         - CMD-SHELL
-        - python -c 'import urllib.request; print(urllib.request.urlopen("http://localhost:3000/healthcheck").read());'
+        - python -c 'import os, urllib.request; port=os.getenv("PORT"); print(urllib.request.urlopen(f"http://localhost:{port}/healthcheck").read());'
       interval: 10s
       timeout: 3s
       retries: 3
