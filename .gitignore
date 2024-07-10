@@ -17,3 +17,27 @@
 .azure
 .venv
 db.sqlite
+
+# Python
+.venv
+build
+*.db
+__pycache__/
+*.py[cod]
+*$py.class
+venv
+.eggs
+.pytest_cache
+*.egg-info
+.DS_Store
+.mypy_cache
+.coverage
+.schema
+.vscode
+.hypothesis
+Pipfile
+Pipfile.lock
+pyproject.toml
+tests/*.dylib
+tests/*.so
+tests/*.dll

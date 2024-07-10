@@ -1,6 +1,6 @@
 # ToDo Application with a FastAPI with sqlite3 and HTMX on Azure App Service (Terraform)
 
-[![Pylint](https://github.com/atrakic/fastapi-htmx-azd-template/actions/workflows/pylint.yml/badge.svg)](https://github.com/atrakic/fastapi-htmx-azd-template/actions/workflows/pylint.yml)
+[![Test](https://github.com/atrakic/fastapi-htmx-azd-template/actions/workflows/test.yml/badge.svg)](https://github.com/atrakic/fastapi-htmx-azd-template/actions/workflows/test.yml)
 
 A ToDo template that includes everything you need to build, deploy, and monitor an Azure solution.
 Uses the Azure Developer CLI (azd) to get you up and running on Azure quickly using Terraform as the IaC provider, Htmx for the Web application, Python (FastAPI) for the API, and Azure Monitor for monitoring and logging.

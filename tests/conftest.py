@@ -1,8 +1,11 @@
 import sqlite3
 import pytest
 from fastapi.testclient import TestClient
+from starlette.templating import Jinja2Templates
 
 from main import app
+
+templates = Jinja2Templates(directory="templates")
 
 
 @pytest.fixture

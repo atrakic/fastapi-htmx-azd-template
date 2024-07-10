@@ -11,10 +11,15 @@ ENV PYTHONUNBUFFERED=1
 RUN addgroup --system fastapi \
     && adduser --system --ingroup fastapi fastapi
 
-COPY --chown=fastapi:fastapi . ./
+COPY --chown=fastapi:fastapi ./src ./
+COPY --chown=fastapi:fastapi ./templates ./templates
+COPY --chown=fastapi:fastapi ./requirements.txt ./
+
 RUN pip install --no-cache-dir -r requirements.txt
-RUN chmod +x start.sh
+
+ARG PORT=3000
+ENV PORT=${PORT}
+EXPOSE ${PORT}
 
 USER fastapi
-EXPOSE 3000
-CMD ["/app/start.sh"]
+CMD ["bash", "-c", "uvicorn main:app --no-server-header --port $PORT --host 0.0.0.0"]
