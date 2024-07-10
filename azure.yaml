@@ -1,13 +1,12 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
 
-name: fastapi-htmx-stack
+name: fastapi-htmx-azd-template
+metadata:
+    template: azd-init@1.9.4
 services:
-  web:
-    project: ./src
-    language: py
-    host: appservice
-infra:
-  provider: terraform
-# azd pipeline config
-#pipeline:
-#  provider: ""
+    fastapi-htmx-azd-template:
+        project: .
+        host: containerapp
+        language: python
+        docker:
+            path: Dockerfile

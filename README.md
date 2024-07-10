@@ -1,4 +1,4 @@
-# ToDo Application with a FastAPI with sqlite3 and HTMX on Azure App Service (Terraform)
+# ToDo Application with a FastAPI with sqlite3 and HTMX on Azure Container apps (bicep)
 
 [![Test](https://github.com/atrakic/fastapi-htmx-azd-template/actions/workflows/test.yml/badge.svg)](https://github.com/atrakic/fastapi-htmx-azd-template/actions/workflows/test.yml)
 
@@ -12,7 +12,6 @@ The following prerequisites are required to use this application. Please ensure 
 
 - [Azure Developer CLI](https://aka.ms/azd-install)
 - [Python (3.8+)](https://www.python.org/downloads/) - for the API backend
-- [Terraform CLI](https://aka.ms/azure-dev/terraform-install)
 - [Azure secrets](https://aka.ms/create-secrets-for-GitHub-workflows)
 
 ### Quickstart
@@ -34,7 +33,6 @@ This command will clone the code to your current folder and prompt you for the f
 4. Run the following commands to package a deployable copy of your application, provision the template's infrastructure to Azure and also deploy the application code to those newly provisioned resources.
 
 ```bash
-azd config set alpha.terraform on
 azd up
 ```
 
@@ -62,7 +60,7 @@ Click the web application URL to launch the ToDo app. Create a new collection an
 
 This application utilizes the following Azure resources:
 
-- [**Azure App Services**](https://docs.microsoft.com/azure/app-service/) to host the Web app
+- [**Azure Container Apps**](https://learn.microsoft.com/en-us/azure/container-apps/overview/) to host the Web app
 
 ### Application Code
 
