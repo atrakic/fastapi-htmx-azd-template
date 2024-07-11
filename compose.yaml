@@ -10,5 +10,7 @@ services:
       interval: 10s
       timeout: 3s
       retries: 3
+    environment:
+      - PORT=3000
     ports:
       - 3000:3000
