@@ -1,5 +1,16 @@
-FROM python:3.11.1-slim
+FROM debian:11-slim AS build
+RUN apt-get update && \
+    apt-get install --no-install-suggests --no-install-recommends --yes python3-venv gcc libpython3-dev && \
+    python3 -m venv /venv && \
+    /venv/bin/pip install --upgrade pip setuptools wheel
+
+FROM build AS build-venv
+COPY requirements.txt /requirements.txt
+RUN /venv/bin/pip3 install --disable-pip-version-check -r /requirements.txt
+
+FROM gcr.io/distroless/python3-debian11 as final
 LABEL maintainer="Admir Trakic <atrakic@users.noreply.github.com>"
+COPY --from=build-venv /venv /venv
 WORKDIR /app
 
 # Keeps Python from generating .pyc files in the container
@@ -8,18 +19,10 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED=1
 
-RUN addgroup --system fastapi \
-    && adduser --system --ingroup fastapi fastapi
+COPY ./src ./
+COPY ./templates ./templates
 
-COPY --chown=fastapi:fastapi ./src ./
-COPY --chown=fastapi:fastapi ./templates ./templates
-COPY --chown=fastapi:fastapi ./requirements.txt ./
+EXPOSE 3000
 
-RUN pip install --no-cache-dir -r requirements.txt
-
-ARG PORT=3000
-ENV PORT=${PORT}
-EXPOSE ${PORT}
-
-USER fastapi
-CMD ["bash", "-c", "uvicorn main:app --no-server-header --port $PORT --host 0.0.0.0"]
+ENV PATH="/venv/bin:$PATH"
+ENTRYPOINT ["uvicorn", "main:app", "--port", "3000", "--host", "0.0.0.0"]
