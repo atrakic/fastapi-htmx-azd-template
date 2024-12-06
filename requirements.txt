@@ -3,3 +3,4 @@ SQLAlchemy
 uvicorn
 jinja2
 python-multipart
+httpx
